@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sample Album | Jess Photography</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">Jess Photography</a>
+    <nav>
+      <a href="albums.html">Albums</a>
+      <a href="request.html">Request Photos <span class="cart-count" data-cart-count>0</span></a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="page-title">
+      <p class="eyebrow">Album</p>
+      <h1>Sample Album</h1>
+      <p>Click “Add to request” on any photo you want in full quality.</p>
+    </section>
+
+    <section class="photo-grid" data-gallery>
+      <article class="photo-card" data-photo-id="JESS-001" data-photo-title="Sample Photo 1">
+        <button class="photo-preview" data-open-lightbox>
+          <img src="assets/images/albums/sample-album/JESS-001.jpg" alt="Sample photo JESS-001" />
+          <span class="watermark">Jess Photography</span>
+        </button>
+        <div class="photo-meta">
+          <strong>JESS-001</strong>
+          <button class="button small" data-add-photo>Add to request</button>
+        </div>
+      </article>
+
+      <article class="photo-card" data-photo-id="JESS-002" data-photo-title="Sample Photo 2">
+        <button class="photo-preview" data-open-lightbox>
+          <img src="assets/images/albums/sample-album/JESS-002.jpg" alt="Sample photo JESS-002" />
+          <span class="watermark">Jess Photography</span>
+        </button>
+        <div class="photo-meta">
+          <strong>JESS-002</strong>
+          <button class="button small" data-add-photo>Add to request</button>
+        </div>
+      </article>
+
+      <article class="photo-card" data-photo-id="JESS-003" data-photo-title="Sample Photo 3">
+        <button class="photo-preview" data-open-lightbox>
+          <img src="assets/images/albums/sample-album/JESS-003.jpg" alt="Sample photo JESS-003" />
+          <span class="watermark">Jess Photography</span>
+        </button>
+        <div class="photo-meta">
+          <strong>JESS-003</strong>
+          <button class="button small" data-add-photo>Add to request</button>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <div class="lightbox" data-lightbox hidden>
+    <button class="lightbox-close" data-close-lightbox>×</button>
+    <img data-lightbox-img alt="Expanded preview" />
+    <p data-lightbox-caption></p>
+  </div>
+
+  <footer>
+    <p>© <span id="year"></span> Jess Photography.</p>
+  </footer>
+
+  <script src="assets/js/site.js"></script>
+</body>
+</html>
