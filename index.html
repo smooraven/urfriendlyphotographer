@@ -1,60 +1,40 @@
 <!doctype html>
-<html lang="en-AU">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ur Friendly Photographer</title>
-  <meta name="description" content="Photo albums by Ur Friendly Photographer. Browse watermarked previews and request full quality photos." />
-  <link rel="stylesheet" href="assets/css/styles.css" />
+  <meta name="description" content="Photo albums and purchase requests from Ur Friendly Photographer.">
+  <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body>
-  <header class="site-header">
-    <a class="brand" href="index.html">Ur Friendly Photographer</a>
-    <nav>
-      <a href="albums.html">Albums</a>
-      <a href="request.html">Request Photos</a>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="hero-content">
-        <p class="eyebrow">Moments captured with heart</p>
-        <h1>Browse Ur Friendly Photographer's albums and choose the photos you love.</h1>
-        <p class="hero-text">Select your favourite images, donate what feels fair, then request the full-quality unwatermarked files by email.</p>
-        <div class="hero-actions">
-          <a class="button primary" href="albums.html">View Albums</a>
-          <a class="button secondary" href="request.html">Request Photos</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="how-it-works">
-      <h2>How it works</h2>
-      <div class="steps">
-        <article>
-          <span>1</span>
-          <h3>Choose photos</h3>
-          <p>Open an album and add your favourite photo IDs to your request list.</p>
-        </article>
-        <article>
-          <span>2</span>
-          <h3>Donate</h3>
-          <p>Send an amount you feel is fair through PayPal.</p>
-        </article>
-        <article>
-          <span>3</span>
-          <h3>Receive files</h3>
-          <p>Submit the request form and Ur Friendly Photographer will email the full-quality unwatermarked images.</p>
-        </article>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>© <span id="year"></span> Ur Friendly Photographer. Preview images are watermarked and lower resolution.</p>
-  </footer>
-
-  <script src="assets/js/site.js"></script>
+<body style="--hero-image:url('assets/images/albums/sunset-demo/UFP-SUN-001.jpg')">
+<header class="site-header">
+  <a class="logo" href="index.html">Ur Friendly Photographer</a>
+  <nav class="nav">
+    <a class="active" href="index.html">Home</a>
+    <a href="albums.html">Albums</a>
+    <a href="request.html" class="cart-pill">Request <span data-cart-count>0</span></a>
+  </nav>
+</header>
+<main>
+  <section class="hero">
+    <div class="hero-card">
+      <div class="eyebrow">Photography - Albums - Requests</div>
+      <h1>Capture the moment. Keep the memory.</h1>
+      <p>Browse demo albums, add favourite photos to a request list, then send through the photo IDs after making a PayPal contribution.</p>
+      <p><a class="btn" href="albums.html">Browse demo albums</a> <a class="btn ghost" href="request.html">View request list</a></p>
+    </div>
+  </section>
+  <section class="section narrow">
+    <h2>How the demo works</h2>
+    <div class="grid album-grid">
+      <div class="notice"><h3>1. Browse albums</h3><p>Open an album and view watermarked preview photos.</p></div>
+      <div class="notice"><h3>2. Add favourites</h3><p>Click “Add to request” on any photo you want.</p></div>
+      <div class="notice"><h3>3. Send request</h3><p>The request page creates an email with the selected photo IDs.</p></div>
+    </div>
+  </section>
+</main>
+<footer>© <span data-year></span> Ur Friendly Photographer. Preview images are demo placeholders.</footer>
+<script src="assets/js/site.js"></script>
 </body>
 </html>

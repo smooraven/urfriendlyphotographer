@@ -1,42 +1,31 @@
 <!doctype html>
-<html lang="en-AU">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Albums | Jess Photography</title>
-  <link rel="stylesheet" href="assets/css/styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Albums - Ur Friendly Photographer</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="index.html">Jess Photography</a>
-    <nav>
-      <a href="albums.html">Albums</a>
-      <a href="request.html">Request Photos <span class="cart-count" data-cart-count>0</span></a>
-    </nav>
-  </header>
-
-  <main class="page">
-    <section class="page-title">
-      <p class="eyebrow">Albums</p>
-      <h1>Photo collections</h1>
-      <p>Select an album to browse watermarked previews.</p>
-    </section>
-
-    <section class="album-grid">
-      <a class="album-card" href="album-sample.html">
-        <img src="assets/images/albums/sample-album/JESS-001.jpg" alt="Sample album cover" />
-        <div>
-          <h2>Sample Album</h2>
-          <p>Replace this with Jess's first album.</p>
-        </div>
-      </a>
-    </section>
-  </main>
-
-  <footer>
-    <p>© <span id="year"></span> Jess Photography.</p>
-  </footer>
-
-  <script src="assets/js/site.js"></script>
+<header class="site-header">
+  <a class="logo" href="index.html">Ur Friendly Photographer</a>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a class="active" href="albums.html">Albums</a>
+    <a href="request.html" class="cart-pill">Request <span data-cart-count>0</span></a>
+  </nav>
+</header>
+<main class="section">
+  <div class="eyebrow">Demo gallery</div>
+  <h1>Albums</h1>
+  <p>These sample albums are included so you can run a full demo. Replace the demo images later with Jess's watermarked preview photos.</p>
+  <div class="grid album-grid">
+    <a class="card album-card" href="album-sunset.html"><img src="assets/images/albums/sunset-demo/UFP-SUN-001.jpg" alt="Sunset demo album"><div class="card-body"><h3>Sunset Demo</h3><p>8 sample photos</p></div></a>
+    <a class="card album-card" href="album-nature.html"><img src="assets/images/albums/nature-demo/UFP-NAT-001.jpg" alt="Nature demo album"><div class="card-body"><h3>Nature Demo</h3><p>6 sample photos</p></div></a>
+    <a class="card album-card" href="album-city.html"><img src="assets/images/albums/city-demo/UFP-CITY-001.jpg" alt="City demo album"><div class="card-body"><h3>City Demo</h3><p>6 sample photos</p></div></a>
+  </div>
+</main>
+<footer>© <span data-year></span> Ur Friendly Photographer</footer>
+<script src="assets/js/site.js"></script>
 </body>
 </html>

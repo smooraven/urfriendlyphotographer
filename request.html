@@ -1,73 +1,50 @@
 <!doctype html>
-<html lang="en-AU">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Request Photos | Jess Photography</title>
-  <link rel="stylesheet" href="assets/css/styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Request Photos - Ur Friendly Photographer</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="index.html">Jess Photography</a>
-    <nav>
-      <a href="albums.html">Albums</a>
-      <a href="request.html">Request Photos <span class="cart-count" data-cart-count>0</span></a>
-    </nav>
-  </header>
-
-  <main class="page request-layout">
-    <section class="page-title">
-      <p class="eyebrow">Photo request</p>
-      <h1>Request full-quality photos</h1>
-      <p>Donate what feels fair, then send Jess your photo IDs and contact details.</p>
+<header class="site-header">
+  <a class="logo" href="index.html">Ur Friendly Photographer</a>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="albums.html">Albums</a>
+    <a class="active cart-pill" href="request.html">Request <span data-cart-count>0</span></a>
+  </nav>
+</header>
+<main class="section">
+  <div class="eyebrow">Request photos</div>
+  <h1>Your request list</h1>
+  <div class="request-layout">
+    <section class="card card-body">
+      <h2>Selected photos</h2>
+      <div class="chips" data-selected-list></div>
+      <p><button class="btn ghost" type="button" data-clear-list>Clear list</button> <a class="btn ghost" href="albums.html">Add more photos</a></p>
+      <div class="paypal-box">
+        <h3>Demo PayPal step</h3>
+        <p>Replace this placeholder with Jess's real PayPal.me link. For now, use this button to explain the process.</p>
+        <p><a class="btn" href="https://www.paypal.com/" target="_blank" rel="noopener">Open PayPal placeholder</a></p>
+      </div>
     </section>
-
-    <section class="request-panel">
-      <h2>Your selected photos</h2>
-      <div data-selected-list class="selected-list"></div>
-      <button class="button secondary small" data-clear-list>Clear list</button>
-    </section>
-
-    <section class="request-panel">
-      <h2>Step 1 - Donate</h2>
-      <p>Replace this PayPal link with Jess's real PayPal.me or donation link.</p>
-      <a class="button primary" href="https://www.paypal.com/" target="_blank" rel="noopener">Open PayPal</a>
-    </section>
-
-    <section class="request-panel">
-      <h2>Step 2 - Send request</h2>
-      <p>This form currently opens the visitor's email app. For a smoother version, replace it later with Formspree, Tally, or Google Forms.</p>
-
+    <section class="card card-body">
+      <h2>Send request email</h2>
+      <p>This opens the visitor's email app with the selected photo IDs already filled in.</p>
       <form id="requestForm">
-        <label>
-          Your name
-          <input type="text" name="name" required />
-        </label>
-        <label>
-          Your email
-          <input type="email" name="email" required />
-        </label>
-        <label>
-          PayPal transaction ID or payment note
-          <input type="text" name="payment" placeholder="Example: PayPal receipt ID" />
-        </label>
-        <label>
-          Photo IDs
-          <textarea name="photoIds" rows="5" data-photo-ids required></textarea>
-        </label>
-        <label>
-          Message
-          <textarea name="message" rows="5" placeholder="Any extra notes for Jess"></textarea>
-        </label>
-        <button class="button primary" type="submit">Prepare Email Request</button>
+        <label>Your name<input name="name" required placeholder="Name"></label>
+        <label>Your email<input type="email" name="email" required placeholder="email@example.com"></label>
+        <label>Selected photo IDs<textarea name="photoIds" data-photo-ids required></textarea></label>
+        <label>PayPal amount / transaction note<input name="payment" placeholder="$20 - PayPal note: Sunset photos"></label>
+        <label>Message<textarea name="message" placeholder="Any notes about the photos or delivery."></textarea></label>
+        <button class="btn" type="submit">Create request email</button>
       </form>
+      <p class="small">Before publishing, change the email address in <code>assets/js/site.js</code>.</p>
     </section>
-  </main>
-
-  <footer>
-    <p>© <span id="year"></span> Jess Photography.</p>
-  </footer>
-
-  <script src="assets/js/site.js"></script>
+  </div>
+</main>
+<footer>© <span data-year></span> Ur Friendly Photographer</footer>
+<script src="assets/js/site.js"></script>
 </body>
 </html>
