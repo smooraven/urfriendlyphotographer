@@ -1,141 +1,95 @@
-const STORAGE_KEY = "jessPhotoRequestList";
-const JESS_EMAIL = "replace-with-jess-email@example.com";
+const STORAGE_KEY = "ufpPhotoRequestList";
+const PHOTOGRAPHER_EMAIL = "replace-with-jess-email@example.com";
 
 function getList() {
-  try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-  } catch {
-    return [];
-  }
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+  catch { return []; }
 }
-
 function saveList(list) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify([...new Set(list)]));
-  updateCartCount();
-  renderSelectedList();
-  syncPhotoIdsTextarea();
+  const clean = [...new Set(list)].sort();
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(clean));
+  updateCartCount(); renderSelectedList(); syncPhotoIdsTextarea(); syncButtons();
 }
-
 function updateCartCount() {
-  document.querySelectorAll("[data-cart-count]").forEach((el) => {
-    el.textContent = getList().length;
+  document.querySelectorAll("[data-cart-count]").forEach(el => el.textContent = getList().length);
+}
+function syncButtons() {
+  const list = getList();
+  document.querySelectorAll("[data-add-photo]").forEach(button => {
+    const card = button.closest("[data-photo-id]");
+    const added = list.includes(card.dataset.photoId);
+    button.textContent = added ? "Added" : "Add to request";
+    button.classList.toggle("ghost", added);
   });
 }
-
 function renderSelectedList() {
   const container = document.querySelector("[data-selected-list]");
   if (!container) return;
-
-  const list = getList();
-  container.innerHTML = "";
-
-  if (list.length === 0) {
-    container.innerHTML = `<p>No photos selected yet. Go to an album and add some favourites.</p>`;
+  const list = getList(); container.innerHTML = "";
+  if (!list.length) {
+    container.innerHTML = `<p>No photos selected yet. Open an album and add a few demo photos first.</p>`;
     return;
   }
-
-  list.forEach((id) => {
+  list.forEach(id => {
     const chip = document.createElement("span");
     chip.className = "chip";
     chip.innerHTML = `<strong>${id}</strong><button type="button" aria-label="Remove ${id}">×</button>`;
-    chip.querySelector("button").addEventListener("click", () => {
-      saveList(getList().filter((photoId) => photoId !== id));
-    });
+    chip.querySelector("button").addEventListener("click", () => saveList(getList().filter(photoId => photoId !== id)));
     container.appendChild(chip);
   });
 }
-
 function syncPhotoIdsTextarea() {
   const textarea = document.querySelector("[data-photo-ids]");
   if (textarea) textarea.value = getList().join("\n");
 }
-
 function setupAddButtons() {
-  document.querySelectorAll("[data-add-photo]").forEach((button) => {
+  document.querySelectorAll("[data-add-photo]").forEach(button => {
     button.addEventListener("click", () => {
-      const card = button.closest("[data-photo-id]");
-      const id = card.dataset.photoId;
+      const id = button.closest("[data-photo-id]").dataset.photoId;
       const list = getList();
-      if (!list.includes(id)) list.push(id);
-      saveList(list);
-      button.textContent = "Added";
-      setTimeout(() => (button.textContent = "Add to request"), 900);
+      if (list.includes(id)) saveList(list.filter(photoId => photoId !== id));
+      else saveList([...list, id]);
     });
   });
 }
-
 function setupClearButton() {
   const clear = document.querySelector("[data-clear-list]");
   if (clear) clear.addEventListener("click", () => saveList([]));
 }
-
 function setupLightbox() {
   const lightbox = document.querySelector("[data-lightbox]");
   if (!lightbox) return;
-
-  const lightboxImg = document.querySelector("[data-lightbox-img]");
+  const img = document.querySelector("[data-lightbox-img]");
   const caption = document.querySelector("[data-lightbox-caption]");
-
-  document.querySelectorAll("[data-open-lightbox]").forEach((button) => {
+  document.querySelectorAll("[data-open-lightbox]").forEach(button => {
     button.addEventListener("click", () => {
       const card = button.closest("[data-photo-id]");
-      const img = button.querySelector("img");
-      lightboxImg.src = img.src;
-      caption.textContent = `${card.dataset.photoId} - ${card.dataset.photoTitle || "Preview"}`;
+      const preview = button.querySelector("img");
+      img.src = preview.src;
+      caption.textContent = `${card.dataset.photoId} - ${card.dataset.photoTitle || "Preview only"}`;
       lightbox.hidden = false;
     });
   });
-
-  document.querySelector("[data-close-lightbox]").addEventListener("click", () => {
-    lightbox.hidden = true;
-    lightboxImg.src = "";
-  });
-
-  lightbox.addEventListener("click", (event) => {
-    if (event.target === lightbox) {
-      lightbox.hidden = true;
-      lightboxImg.src = "";
-    }
-  });
+  document.querySelector("[data-close-lightbox]").addEventListener("click", () => { lightbox.hidden = true; img.src = ""; });
+  lightbox.addEventListener("click", event => { if (event.target === lightbox) { lightbox.hidden = true; img.src = ""; } });
 }
-
 function setupRequestForm() {
   const form = document.querySelector("#requestForm");
   if (!form) return;
-
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", event => {
     event.preventDefault();
     const data = new FormData(form);
-    const subject = encodeURIComponent("Photo request for Jess Photography");
+    const subject = encodeURIComponent("Photo request - Ur Friendly Photographer");
     const body = encodeURIComponent([
-      "Hi Jess,",
-      "",
-      "I'd like to request these full-quality photos:",
-      data.get("photoIds"),
-      "",
+      "Hi Ur Friendly Photographer,", "",
+      "I'd like to request these full-quality photos:", data.get("photoIds"), "",
       `Name: ${data.get("name")}`,
       `Email: ${data.get("email")}`,
-      `Payment note / PayPal transaction ID: ${data.get("payment") || "Not provided"}`,
-      "",
-      "Message:",
-      data.get("message") || "No extra message",
+      `PayPal amount / transaction note: ${data.get("payment") || "Not provided"}`, "",
+      "Message:", data.get("message") || "No extra message"
     ].join("\n"));
-
-    window.location.href = `mailto:${JESS_EMAIL}?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${PHOTOGRAPHER_EMAIL}?subject=${subject}&body=${body}`;
   });
 }
-
-function setupYear() {
-  document.querySelectorAll("#year").forEach((el) => {
-    el.textContent = new Date().getFullYear();
-  });
-}
-
-setupYear();
-updateCartCount();
-renderSelectedList();
-syncPhotoIdsTextarea();
-setupAddButtons();
-setupClearButton();
-setupLightbox();
-setupRequestForm();
+function setupYear() { document.querySelectorAll("[data-year]").forEach(el => el.textContent = new Date().getFullYear()); }
+setupYear(); updateCartCount(); renderSelectedList(); syncPhotoIdsTextarea(); setupAddButtons(); setupClearButton(); setupLightbox(); syncButtons();
